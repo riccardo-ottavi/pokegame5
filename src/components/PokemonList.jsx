@@ -6,7 +6,11 @@ export default function PokemonList() {
 
     return (
         <ul>  
-            <h1>{pokemonList.name}</h1>
+            {pokemonList.map(pokemon =>
+                <li
+                    key={pokemon.id}
+                >{pokemon.name}</li>
+            )}
         </ul>
     );
 }
