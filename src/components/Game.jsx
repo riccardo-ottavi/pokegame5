@@ -31,6 +31,9 @@ console.log(currentTeam)
                     </li>
                 ))}
             </ul>
+            <Team 
+                team={currentTeam}
+            />
             
         </div>
     )
