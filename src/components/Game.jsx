@@ -6,7 +6,7 @@ import Team from "./Team";
 export default function Game() {
     const { pokemonList } = usePokemon();
     const [starters, setStarters] = useState([])
-    const [selectedStarter, setSelectedStarter] = useState()
+    const [ currentTeam, setCurrentTeam ] = useState([])
 
     //use effect per settare gli starter evitando asincronicità
     useEffect(() => {
@@ -14,12 +14,16 @@ export default function Game() {
         setStarters(pokemonList.filter(pokemon => starterNames.includes(pokemon.name)));
     }, [pokemonList]);
 
-
+    function addToTeam(pokemon) {
+        setCurrentTeam(prev => [...prev, pokemon])
+        console.log(pokemon.name, "e' stato aggiunto al team")
+    }
+console.log(currentTeam)
     return (
         <div className="game">
             <ul>
                 {starters.map(pokemon => (
-                    <li>
+                    <li onClick={() => addToTeam(pokemon)}>
                         <PokemonCard
                             key={pokemon.id}
                             pokemon={pokemon}
@@ -27,7 +31,7 @@ export default function Game() {
                     </li>
                 ))}
             </ul>
-            <Team />
+            
         </div>
     )
 }
