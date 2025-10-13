@@ -1,16 +1,21 @@
 import './App.css'
 import { PokemonProvider } from './contexts/PokemonContext.jsx'
-import PokemonList from './components/PokemonList'
+import PokemonList from './components/PokeDex.jsx'
+import Display from './components/Display.jsx'
+import Menu from './components/Menu.jsx'
 
-  function App() {
+function App() {
 
-    return (
-      <>
+  return (
+    <>
+      <main>
         <PokemonProvider>
-          <PokemonList />
+          <Display />
+          <Menu />
         </PokemonProvider>
-      </>
-    )
-  }
+      </main>
+    </>
+  )
+}
 
 export default App

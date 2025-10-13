@@ -9,7 +9,7 @@ const pokemonNames = [
     'nidorino', 'nidoking', 'clefairy', 'clefable', 'vulpix', 'ninetales',
     'jigglypuff', 'wigglytuff', 'zubat', 'golbat', 'oddish', 'gloom', 'vileplume',
     'paras', 'parasect', 'venonat', 'venomoth', 'diglett', 'dugtrio', 'meowth',
-    'persian', 'psyduck', 'golduck', 'machop', 'machoke', 'machamp', 'bellsprout',
+    'persian', 'psyduck', 'golduck','abra','kadabra','alakazam', 'machop', 'machoke', 'machamp', 'bellsprout',
     'weepinbell', 'victreebel', 'tentacool', 'tentacruel', 'geodude', 'graveler',
     'golem', 'ponyta', 'rapidash', 'slowpoke', 'slowbro', 'magnemite', 'magneton',
     'farfetchd', 'doduo', 'dodrio', 'seel', 'dewgong', 'grimer', 'muk', 'shellder',
@@ -23,12 +23,11 @@ const pokemonNames = [
     'aerodactyl', 'snorlax', 'articuno', 'zapdos', 'moltres', 'mewtwo', 'mew'
 ];
 const endPoint = "https://pokeapi.co/api/v2/pokemon/"
-
+console.log(pokemonNames.length)
 const PokemonContext = createContext();
 
 export function PokemonProvider({ children }) {
     const [pokemonList, setPokemonList] = useState([]);
-
     //con le promise i pokemon mi arrivano nell'ordine giusto
     async function fetchPokemons() {
         try {
@@ -41,10 +40,13 @@ export function PokemonProvider({ children }) {
     }
 
 
+
     useEffect(() => {
         fetchPokemons();
     }, []);
-    console.log(pokemonList)
+
+    
+    
 
     return (
         <PokemonContext.Provider value={{ pokemonList, fetchPokemons }}>

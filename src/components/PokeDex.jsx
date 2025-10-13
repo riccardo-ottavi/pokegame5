@@ -1,11 +1,10 @@
 import { usePokemon } from "../contexts/PokemonContext.jsx"
 
-export default function PokemonList() {
+export default function PokeDex() {
     const { pokemonList } = usePokemon();
-    console.log(pokemonList)
 
     return (
-        <ul>  
+        <ul>
             {pokemonList.map(pokemon =>
                 <li
                     key={pokemon.id}

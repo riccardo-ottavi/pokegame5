@@ -3,3 +3,46 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.display{
+  height: 100vh;
+  width: 85vw;
+  background-color: yellowgreen;
+  display: flex;
+}
+
+main {
+  display: flex;
+}
+
+.menu {
+  width: 15vw;
+  height: 100vh;
+  background-color: violet;
+  overflow: scroll;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column; 
+}
+
+.team {
+  height: 100vh;
+  width: 15vw;
+  background-color: tomato;
+}
+
+.game {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cards {
+  border: 1px solid black;
+  height: calc(100vh / 6);
+  width: 15vw;
+}
