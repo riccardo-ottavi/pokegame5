@@ -7,7 +7,7 @@ import Team from "./Team";
 export default function Game() {
     const { pokemonList, hasGameStarted, setHasGameStarted } = usePokemon();
     const [starters, setStarters] = useState([])
-    const [ currentTeam, setCurrentTeam ] = useState([])
+    const [currentTeam, setCurrentTeam] = useState([])
 
     //use effect per settare gli starter evitando asincronicità
     useEffect(() => {
@@ -15,7 +15,8 @@ export default function Game() {
         setStarters(pokemonList.filter(pokemon => starterNames.includes(pokemon.name)));
     }, [pokemonList]);
 
-    function handleClick(pokemon){
+
+    function handleClick(pokemon) {
         setStarter(pokemon)
         setHasGameStarted(true);
     }
@@ -28,27 +29,32 @@ export default function Game() {
     return (
         <div className="game">
             {!hasGameStarted &&
-            <ul className="starter-trio">
-                {starters.map(pokemon => (
-                    <li onClick={() => handleClick(pokemon)}>
-                        <PokemonCard
-                            key={pokemon.id}
-                            pokemon={pokemon}
-                        />
-                    </li>
-                ))}
-            </ul>
+                <ul className="starter-trio">
+                    {starters.map(pokemon => (
+                        <li onClick={() => handleClick(pokemon)}>
+                            <PokemonCard
+                                key={pokemon.id}
+                                pokemon={pokemon}
+                            />
+                        </li>
+                    ))}
+                </ul>
             }
-            {hasGameStarted && 
+            {hasGameStarted &&
                 <div className="game-window">
-                    
+                    <div className="player">
+
+                    </div>
+                    <div className="enemy">
+
+                    </div>
                 </div>
-            
+
             }
-            <Team 
+            <Team
                 team={currentTeam}
             />
-            
+
         </div>
     )
 }

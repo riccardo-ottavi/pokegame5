@@ -23,20 +23,24 @@ const pokemonNames = [
     'aerodactyl', 'snorlax', 'articuno', 'zapdos', 'moltres', 'mewtwo', 'mew'
 ];
 const endPoint = "https://pokeapi.co/api/v2/pokemon/"
-console.log(pokemonNames.length)
 const PokemonContext = createContext();
 
 export function PokemonProvider({ children }) {
     const [pokemonList, setPokemonList] = useState([]);
     const [hasGameStarted, setHasGameStarted] = useState(false)
     const [isGameOver, setIsGameOver] = useState(false)
+    const [currentEnemy, setCurrentEnemy] = useState()
 
-    //con le promise i pokemon mi arrivano nell'ordine giusto
+    //con le promise i pokemon mi arrivano nell'ordine giusto e poi setta un nemico casuale
     async function fetchPokemons() {
         try {
             const responses = await Promise.all(pokemonNames.map(name => axios.get(endPoint + name)));
             const pokemons = responses.map(res => res.data);
             setPokemonList(pokemons); 
+            const randomEnemy = Math.floor(Math.random() * pokemons.length);
+            setCurrentEnemy(pokemons[randomEnemy]);
+            console.log(pokemons[randomEnemy]);
+
         } catch (error) {
             console.error(error);
         }
@@ -51,11 +55,13 @@ export function PokemonProvider({ children }) {
 
     useEffect(() => {
         if (hasGameStarted) {
-            console.log("La partita è iniziata!", hasGameStarted);
+            console.log("La partita è iniziata!", hasGameStarted)
         }
+        const randomEnemy = Math.floor(Math.random() * pokemonNames.length);
+        setCurrentEnemy(pokemonList[randomEnemy])
+        console.log(currentEnemy)
     }, [hasGameStarted]);
 
-    
     
 
     return (
