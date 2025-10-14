@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { usePokemon } from "../contexts/PokemonContext";
 import PokemonCard from "./PokemonCard";
 import Team from "./Team";
+import GameWindow from "./GameWindow";
 
 export default function Game() {
     const { pokemonList, hasGameStarted, setHasGameStarted } = usePokemon();
@@ -10,11 +11,18 @@ export default function Game() {
     const [currentTeam, setCurrentTeam] = useState([])
     const [activePokemon, setActivePokemon] = useState()
 
+
+
+
+
     //use effect per settare gli starter evitando asincronicità
     useEffect(() => {
         const starterNames = ["abra", "gastly", "machop"];
         setStarters(pokemonList.filter(pokemon => starterNames.includes(pokemon.name)));
     }, [pokemonList]);
+
+ 
+    
 
 
     function handleClick(pokemon) {
@@ -41,16 +49,9 @@ export default function Game() {
                     ))}
                 </ul>
             }
+
             {hasGameStarted &&
-                <div className="game-window">
-                    <div className="player">
-
-                    </div>
-                    <div className="enemy">
-
-                    </div>
-                </div>
-
+                <GameWindow />
             }
             <Team
                 team={currentTeam}

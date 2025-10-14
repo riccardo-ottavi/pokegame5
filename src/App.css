@@ -45,6 +45,12 @@ ul {
   border: 1px solid black;
   height: calc(100vh / 6);
   width: 15vw;
+  display: flex;
+}
+
+.cards img {
+   width: 100px;
+   height: 100px;
 }
 
 .game-window {
@@ -52,3 +58,4 @@ ul {
   height: 100vh;
   background-color: gray;
 }
+
