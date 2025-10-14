@@ -18,8 +18,14 @@ export default function GameWindow() {
                         pokemon={currentEnemy}
                     />
                 </div>
-                <div className="status">
-                    
+                <div className="status">       
+                        <div className="moves">
+                            <ul>
+                                {activePokemon.learnedMoves.map((move)=> (
+                                    <li>{move.move.name}</li>
+                                ))}
+                            </ul>
+                        </div>              
                 </div>
             </div>
         </>

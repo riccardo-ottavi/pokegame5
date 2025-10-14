@@ -80,3 +80,9 @@ ul {
   width: 100%;
   background-color: violet;
 }
+
+.status .moves {
+  width: 400px;
+  height: 100%;
+  background-color: wheat;
+}

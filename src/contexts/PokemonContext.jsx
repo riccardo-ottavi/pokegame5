@@ -9,7 +9,7 @@ const pokemonNames = [
     'nidorino', 'nidoking', 'clefairy', 'clefable', 'vulpix', 'ninetales',
     'jigglypuff', 'wigglytuff', 'zubat', 'golbat', 'oddish', 'gloom', 'vileplume',
     'paras', 'parasect', 'venonat', 'venomoth', 'diglett', 'dugtrio', 'meowth',
-    'persian', 'psyduck', 'golduck','abra','kadabra','alakazam', 'machop', 'machoke', 'machamp', 'bellsprout',
+    'persian', 'psyduck', 'golduck', 'abra', 'kadabra', 'alakazam', 'machop', 'machoke', 'machamp', 'bellsprout',
     'weepinbell', 'victreebel', 'tentacool', 'tentacruel', 'geodude', 'graveler',
     'golem', 'ponyta', 'rapidash', 'slowpoke', 'slowbro', 'magnemite', 'magneton',
     'farfetchd', 'doduo', 'dodrio', 'seel', 'dewgong', 'grimer', 'muk', 'shellder',
@@ -31,19 +31,30 @@ export function PokemonProvider({ children }) {
     const [isGameOver, setIsGameOver] = useState(false)
     const [currentEnemy, setCurrentEnemy] = useState()
     const [activePokemon, setActivePokemon] = useState()
-    
+
 
     //con le promise i pokemon mi arrivano nell'ordine giusto e poi setta un nemico casuale
     async function fetchPokemons() {
         try {
-            const responses = await Promise.all(pokemonNames.map(name => axios.get(endPoint + name)));
-            const pokemons = responses.map(res => res.data);
-            setPokemonList(pokemons); 
+            const responses = await Promise.all(
+                pokemonNames.map(name => axios.get(endPoint + name))
+            );
+
+            const pokemons = responses.map(res => {
+                const data = res.data;
+                // Aggiungo la nuova proprietà learnedMoves direttamente qui
+                return {
+                    ...data,
+                    learnedMoves: data.moves.slice(0, 4),
+                };
+            });
+
+            setPokemonList(pokemons);
+
             const randomEnemy = Math.floor(Math.random() * pokemons.length);
             setCurrentEnemy(pokemons[randomEnemy]);
+
             console.log(pokemons[randomEnemy]);
-
-
         } catch (error) {
             console.error(error);
         }
@@ -54,18 +65,9 @@ export function PokemonProvider({ children }) {
     useEffect(() => {
         fetchPokemons();
     }, []);
-    
 
 
-    useEffect(() => {
-        if (hasGameStarted) {
-            console.log("La partita è iniziata!", hasGameStarted)
-        }
-        const randomEnemy = Math.floor(Math.random() * pokemonNames.length);
-        setCurrentEnemy(pokemonList[randomEnemy])
-    }, [hasGameStarted]);
 
-    
 
     return (
         <PokemonContext.Provider value={{ pokemonList, fetchPokemons, hasGameStarted, setHasGameStarted, isGameOver, setIsGameOver, currentEnemy, setCurrentEnemy, activePokemon, setActivePokemon }}>

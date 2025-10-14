@@ -5,6 +5,7 @@ import PokemonCard from "./PokemonCard";
 import Team from "./Team";
 import GameWindow from "./GameWindow";
 
+
 export default function Game() {
     const { pokemonList, hasGameStarted, setHasGameStarted, setActivePokemon, activePokemon } = usePokemon();
     const [starters, setStarters] = useState([])
@@ -12,13 +13,10 @@ export default function Game() {
 
 
 
-
-
     //use effect per settare gli starter evitando asincronicità
     useEffect(() => {
         const starterNames = ["abra", "gastly", "machop"];
         setStarters(pokemonList.filter(pokemon => starterNames.includes(pokemon.name)));
-
     }, [pokemonList]);
 
 
@@ -29,7 +27,6 @@ export default function Game() {
 
     function setStarter(pokemon) {
         setCurrentTeam(prev => [...prev, pokemon])
-        console.log(pokemon.name, "e' stato aggiunto al team")
         setActivePokemon(pokemon)
     }
 
