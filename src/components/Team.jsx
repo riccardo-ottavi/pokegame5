@@ -1,7 +1,7 @@
 import PokemonCard from "./PokemonCard"
 
 
-export default function Team({ team, activePokemon, setActivePokemon }){
+export default function Team({ team }){
 
     return(
         <div className="team">

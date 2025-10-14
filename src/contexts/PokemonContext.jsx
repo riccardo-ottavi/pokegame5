@@ -30,6 +30,8 @@ export function PokemonProvider({ children }) {
     const [hasGameStarted, setHasGameStarted] = useState(false)
     const [isGameOver, setIsGameOver] = useState(false)
     const [currentEnemy, setCurrentEnemy] = useState()
+    const [activePokemon, setActivePokemon] = useState()
+    
 
     //con le promise i pokemon mi arrivano nell'ordine giusto e poi setta un nemico casuale
     async function fetchPokemons() {
@@ -52,6 +54,7 @@ export function PokemonProvider({ children }) {
     useEffect(() => {
         fetchPokemons();
     }, []);
+    
 
 
     useEffect(() => {
@@ -60,13 +63,12 @@ export function PokemonProvider({ children }) {
         }
         const randomEnemy = Math.floor(Math.random() * pokemonNames.length);
         setCurrentEnemy(pokemonList[randomEnemy])
-        console.log(currentEnemy)
     }, [hasGameStarted]);
 
     
 
     return (
-        <PokemonContext.Provider value={{ pokemonList, fetchPokemons, hasGameStarted, setHasGameStarted, isGameOver, setIsGameOver, currentEnemy, setCurrentEnemy }}>
+        <PokemonContext.Provider value={{ pokemonList, fetchPokemons, hasGameStarted, setHasGameStarted, isGameOver, setIsGameOver, currentEnemy, setCurrentEnemy, activePokemon, setActivePokemon }}>
             {children}
         </PokemonContext.Provider>
     );

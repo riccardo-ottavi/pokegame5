@@ -6,10 +6,9 @@ import Team from "./Team";
 import GameWindow from "./GameWindow";
 
 export default function Game() {
-    const { pokemonList, hasGameStarted, setHasGameStarted } = usePokemon();
+    const { pokemonList, hasGameStarted, setHasGameStarted, setActivePokemon, activePokemon } = usePokemon();
     const [starters, setStarters] = useState([])
     const [currentTeam, setCurrentTeam] = useState([])
-    const [activePokemon, setActivePokemon] = useState()
 
 
 
@@ -19,11 +18,9 @@ export default function Game() {
     useEffect(() => {
         const starterNames = ["abra", "gastly", "machop"];
         setStarters(pokemonList.filter(pokemon => starterNames.includes(pokemon.name)));
+
     }, [pokemonList]);
-
- 
     
-
 
     function handleClick(pokemon) {
         setStarter(pokemon)
@@ -33,6 +30,7 @@ export default function Game() {
     function setStarter(pokemon) {
         setCurrentTeam(prev => [...prev, pokemon])
         console.log(pokemon.name, "e' stato aggiunto al team")
+        setActivePokemon(pokemon)
     }
 
     return (
@@ -55,8 +53,6 @@ export default function Game() {
             }
             <Team
                 team={currentTeam}
-                activePokemon={activePokemon}
-                setActivePokemon={setActivePokemon}
             />
 
         </div>

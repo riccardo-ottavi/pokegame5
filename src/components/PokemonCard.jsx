@@ -5,9 +5,7 @@ export default function PokemonCard(props) {
     const maxMoves = [0, 0, 0, 0]
 
 
-    useEffect(() => {
-        console.log(pokemon.moves)
-    }, [pokemon]);
+
 
     function getRandomMove() {
         const randomMove = Math.floor(Math.random() * pokemon.moves.length);
