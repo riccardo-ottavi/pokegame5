@@ -1,10 +1,11 @@
+
 import { useState, useEffect } from "react"
 import { usePokemon } from "../contexts/PokemonContext";
 import PokemonCard from "./PokemonCard";
 import Team from "./Team";
 
 export default function Game() {
-    const { pokemonList } = usePokemon();
+    const { pokemonList, hasGameStarted, setHasGameStarted } = usePokemon();
     const [starters, setStarters] = useState([])
     const [ currentTeam, setCurrentTeam ] = useState([])
 
@@ -14,16 +15,22 @@ export default function Game() {
         setStarters(pokemonList.filter(pokemon => starterNames.includes(pokemon.name)));
     }, [pokemonList]);
 
-    function addToTeam(pokemon) {
+    function handleClick(pokemon){
+        setStarter(pokemon)
+        setHasGameStarted(true);
+    }
+
+    function setStarter(pokemon) {
         setCurrentTeam(prev => [...prev, pokemon])
         console.log(pokemon.name, "e' stato aggiunto al team")
     }
-console.log(currentTeam)
+
     return (
         <div className="game">
-            <ul>
+            {!hasGameStarted &&
+            <ul className="starter-trio">
                 {starters.map(pokemon => (
-                    <li onClick={() => addToTeam(pokemon)}>
+                    <li onClick={() => handleClick(pokemon)}>
                         <PokemonCard
                             key={pokemon.id}
                             pokemon={pokemon}
@@ -31,6 +38,13 @@ console.log(currentTeam)
                     </li>
                 ))}
             </ul>
+            }
+            {hasGameStarted && 
+                <div className="game-window">
+                    
+                </div>
+            
+            }
             <Team 
                 team={currentTeam}
             />

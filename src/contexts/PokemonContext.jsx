@@ -28,6 +28,9 @@ const PokemonContext = createContext();
 
 export function PokemonProvider({ children }) {
     const [pokemonList, setPokemonList] = useState([]);
+    const [hasGameStarted, setHasGameStarted] = useState(false)
+    const [isGameOver, setIsGameOver] = useState(false)
+
     //con le promise i pokemon mi arrivano nell'ordine giusto
     async function fetchPokemons() {
         try {
@@ -45,11 +48,18 @@ export function PokemonProvider({ children }) {
         fetchPokemons();
     }, []);
 
+
+    useEffect(() => {
+        if (hasGameStarted) {
+            console.log("La partita è iniziata!", hasGameStarted);
+        }
+    }, [hasGameStarted]);
+
     
     
 
     return (
-        <PokemonContext.Provider value={{ pokemonList, fetchPokemons }}>
+        <PokemonContext.Provider value={{ pokemonList, fetchPokemons, hasGameStarted, setHasGameStarted, isGameOver, setIsGameOver }}>
             {children}
         </PokemonContext.Provider>
     );

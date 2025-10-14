@@ -5,7 +5,6 @@ export default function Team(props){
     const { team } = props
 
     
-    console.log(team)
     return(
         <div className="team">
             <ul>
