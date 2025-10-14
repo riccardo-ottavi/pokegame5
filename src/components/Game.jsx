@@ -20,7 +20,7 @@ export default function Game() {
         setStarters(pokemonList.filter(pokemon => starterNames.includes(pokemon.name)));
 
     }, [pokemonList]);
-    
+
 
     function handleClick(pokemon) {
         setStarter(pokemon)

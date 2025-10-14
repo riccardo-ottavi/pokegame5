@@ -60,6 +60,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .player{
@@ -72,4 +73,10 @@ ul {
   width: 500px;
   height: 400px;
   background-color: blue;
+}
+
+.status {
+  height: 150px;
+  width: 100%;
+  background-color: violet;
 }
