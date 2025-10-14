@@ -8,6 +8,7 @@ export default function Game() {
     const { pokemonList, hasGameStarted, setHasGameStarted } = usePokemon();
     const [starters, setStarters] = useState([])
     const [currentTeam, setCurrentTeam] = useState([])
+    const [activePokemon, setActivePokemon] = useState()
 
     //use effect per settare gli starter evitando asincronicità
     useEffect(() => {
@@ -53,6 +54,8 @@ export default function Game() {
             }
             <Team
                 team={currentTeam}
+                activePokemon={activePokemon}
+                setActivePokemon={setActivePokemon}
             />
 
         </div>

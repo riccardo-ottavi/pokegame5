@@ -30,6 +30,7 @@ export function PokemonProvider({ children }) {
     const [hasGameStarted, setHasGameStarted] = useState(false)
     const [isGameOver, setIsGameOver] = useState(false)
     const [currentEnemy, setCurrentEnemy] = useState()
+    
 
     //con le promise i pokemon mi arrivano nell'ordine giusto e poi setta un nemico casuale
     async function fetchPokemons() {

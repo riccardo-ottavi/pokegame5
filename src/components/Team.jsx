@@ -1,19 +1,14 @@
 import PokemonCard from "./PokemonCard"
 import { useEffect, useState } from "react"
 
-export default function Team(props){
+export default function Team({ team, activePokemon, setActivePokemon }){
 
-    const [activePokemon, setActivePokemon] = useState()
-    const { team } = props
 
     useEffect(() =>{
         setActivePokemon(team[0])
         console.log(activePokemon)
     }
-    ),[team]
-
-    
-
+    ),[team, setActivePokemon]
 
     return(
         <div className="team">
@@ -28,7 +23,6 @@ export default function Team(props){
         </div>
     )
 }
-
 
 function swapPokemon() {
 
