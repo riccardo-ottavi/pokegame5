@@ -86,3 +86,15 @@ ul {
   height: 100%;
   background-color: wheat;
 }
+
+.health-bar {
+  height: 20px;
+  width: 100px;
+  background-color: rgb(58, 58, 58);
+}
+
+.actual-life{
+  background-color: green;
+  height: 100%;
+  
+}
