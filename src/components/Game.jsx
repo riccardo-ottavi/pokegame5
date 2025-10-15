@@ -11,7 +11,9 @@ export default function Game() {
     const [starters, setStarters] = useState([])
     const [currentTeam, setCurrentTeam] = useState([])
 
-
+    pokemonList.map(teamMember => {
+        teamMember.level = 5;
+    })
 
     //use effect per settare gli starter evitando asincronicità
     useEffect(() => {

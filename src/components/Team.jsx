@@ -6,9 +6,7 @@ import PokemonCard from "./PokemonCard"
 export default function Team({ team }) {
 
 
-    team.map(teamMember => {
-        teamMember.level = 5;
-    })
+    
 
 
     return (

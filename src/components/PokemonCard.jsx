@@ -1,5 +1,5 @@
 export default function PokemonCard(props) {
-    const { pokemon } = props
+    const { pokemon, health } = props
  
 
 
@@ -7,6 +7,7 @@ export default function PokemonCard(props) {
         <div className="cards">
             <div className="cards-infos">
                 <p>{pokemon.name}</p>
+                <p>{health}</p>
                 <p>Livello: {pokemon.level}</p>
                 <img src={pokemon.sprites.front_default}></img>
                 <ul>
@@ -14,12 +15,6 @@ export default function PokemonCard(props) {
                         <li>{type.type.name}</li>
                     ))}
                 </ul>
-            </div>
-            <div className="moves">
-                <ul>
-                   
-                </ul>
-                
             </div>
         </div>
         
