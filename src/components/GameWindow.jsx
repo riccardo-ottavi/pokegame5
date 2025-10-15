@@ -5,40 +5,37 @@ import PokemonCard from "./PokemonCard";
 
 export default function GameWindow() {
     const { currentEnemy, activePokemon } = usePokemon();
-    const [activePokemonHealth, setActivePokemonHealth] = useState()
-    const [currentEnemyHealth, setCurrentEnemyHealth] = useState()
-
+    const [activePokemonMaxHealth, setActivePokemonMaxHealth] = useState()
+    const [currentEnemyMaxHealth, setCurrentEnemyMaxHealth] = useState()
+    const [activePokemonDmgTaken, setActivePokemonDmgTaken] = useState(0)
+    const [currentEnemyDmgTaken, setCurrentEnemyDmgTaken] = useState(0)
 
     useEffect(() => {
-        setActivePokemonHealth(Math.floor(((2 * activePokemon.stats[0].base_stat) * activePokemon.level) / 100) + activePokemon.level + 10)
-        setCurrentEnemyHealth(Math.floor(((2 * currentEnemy.stats[0].base_stat) * currentEnemy.level) / 100) + currentEnemy.level + 10)
-    },[activePokemon, currentEnemy])
+        setActivePokemonMaxHealth(Math.floor(((2 * activePokemon.stats[0].base_stat) * activePokemon.level) / 100) + activePokemon.level + 10)
+        setCurrentEnemyMaxHealth(Math.floor(((2 * currentEnemy.stats[0].base_stat) * currentEnemy.level) / 100) + currentEnemy.level + 10)
+    }, [activePokemon, currentEnemy])
 
-
-    console.log(activePokemonHealth)
     return (
         <>
             <div className="game-window">
                 <div className="player">
-                    <PokemonCard
-                        pokemon={activePokemon}
-                        health={activePokemonHealth}
-                    />
+                    {activePokemonMaxHealth && (
+                        <PokemonCard
+                            pokemon={activePokemon}
+                            maxHealth={activePokemonMaxHealth}
+                            dmgTaken={activePokemonDmgTaken}
+                        />
+                    )}
                 </div>
+
                 <div className="enemy">
-                    <PokemonCard
-                        pokemon={currentEnemy}
-                        health={currentEnemyHealth}
-                    />
-                </div>
-                <div className="status">
-                    <div className="moves">
-                        <ul>
-                            {activePokemon.learnedMoves.map((move) => (
-                                <li>{move.move.name}</li>
-                            ))}
-                        </ul>
-                    </div>
+                    {currentEnemyMaxHealth && (
+                        <PokemonCard
+                            pokemon={currentEnemy}
+                            maxHealth={currentEnemyMaxHealth}
+                            dmgTaken={currentEnemyDmgTaken}
+                        />
+                    )}
                 </div>
             </div>
         </>
